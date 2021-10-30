@@ -1,6 +1,6 @@
-### Frontend-Developer Mode:
+## Frontend-Developer Mode:
 
-## Requirements:
+### Requirements:
 
 	React and npm:
 	/$ sudo apt install nodejs npm
@@ -10,7 +10,7 @@
 	https://docs.docker.com/compose/install/
 
 
-## Workflow:
+### Workflow:
 
 	Build static content:
 	/client $ npm run build
