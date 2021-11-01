@@ -1,10 +1,12 @@
 FROM python:3.9.7-alpine
 
-ENV PYTHONDONTWRITEBYTECODE 1
+#ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 WORKDIR /www/api
 COPY ./requirements.txt .
+
+#RUN pip install --upgrade pip
 
 RUN apk add --no-cache --virtual .build-deps \
 		gcc \
