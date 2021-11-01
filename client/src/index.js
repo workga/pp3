@@ -1,17 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; 
+import ReactDOM from 'react-dom'; 
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+  
+function UncontrolledFormComponent() {  
+
+  let inputRef = React.createRef(); 
+
+  const handleClick = e => {  
+    e.preventDefault(); 
+
+    let inputValue = inputRef.current.value;
+
+    if (!inputValue || inputValue.length === 0)
+    {
+        alert("You entered nothing!");
+    }
+    else
+    {
+        alert("Name is: " + inputValue);
+    } 
+      
+  };  
+  
+  return (  
+    <div>  
+      <h3>Simple form</h3>
+
+      <form>  
+        <input type="text" ref={inputRef} />  
+        <button onClick={handleClick}>  
+          Submit  
+        </button>  
+      </form> 
+
+    </div>  
+  );  
+} 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <UncontrolledFormComponent />,
+    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
