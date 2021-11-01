@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+    nginx:
+        container_name: nginx
+        build: ./nginx
+        image: nginx
+
+        ports:
+          - "8081:8080"
+        volumes:
+          - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+          - ./client/build/:/www/client
+          #- ./logs/:/var/log/nginx
+
+        command: nginx-debug -g "daemon off;"
+        depends_on:
+          - api
+
+    api:
+        container_name: api
+        build: ./api
+        image: api
+
+        ports:
+          - "8091:8090"
+        volumes:
+          - ./api/app/:/www/api/app
+
+        command: uwsgi --http-socket :8090 --module app.wsgi
+
+
