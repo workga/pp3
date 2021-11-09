@@ -16,11 +16,11 @@
 ### Workflow:
 
 	Build static content:
-	/client $ npm run build
+	/client/$ npm run build
 
-	Build images and run (or restart) containers (localhost:8081)
+	Build images:
+	/$ source ./build.sh
+
+	Run containers (on localhost:8081, ctrl+C to stop):
 	/$ source ./run.sh
-
-	Stop containers:
-	/$ docker-compose down
 
