@@ -24,6 +24,8 @@ USER nginx_user
 
 EXPOSE 8080
 
+CMD ["nginx-debug", "-g", "daemon off;"]
+
 # FROM golang:alpine AS stage0
 
 

@@ -13,9 +13,7 @@ services:
           - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
           - ./client/build/:/usr/src/client
           - ./api/static/admin:/usr/src/client/static/admin
-          #- ./logs/:/var/log/nginx
 
-        command: nginx-debug -g "daemon off;"
         depends_on:
           - api
 
@@ -29,23 +27,22 @@ services:
         volumes:
           - ./api/:/usr/src/api
 
-        command: uwsgi --http-socket :8090 --module app.wsgi
-    #     depends_on:
-    #       - db
+        env_file:
+          - ./.env
+        depends_on:
+          - db
 
-    # db:
-    #     container_name: db
-    #     build: ./db
-    #     image: db
+    db:
+        container_name: db
+        build: ./db
+        image: db
 
-    #     volumes:
-    #       - postgres_data:/var/lib/postgresql/data/
-    #     environment:
-    #       - POSTGRES_USER=hello_django
-    #       - POSTGRES_PASSWORD=hello_django
-    #       - POSTGRES_DB=hello_django_dev
+        volumes:
+          - postgres_data:/var/lib/postgresql/data/
+        
+        env_file:
+          - ./.env
 
-# volumes:
-#   postgres_data:
-
+volumes:
+  postgres_data:
 
