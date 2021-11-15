@@ -1,5 +1,6 @@
 FROM python:3.9.7-alpine
 #ubuntu:22.04
+LABEL project="clare"
 
 WORKDIR /usr/src/api
 
@@ -19,10 +20,15 @@ RUN	apk add --no-cache \
 RUN	pip install --upgrade pip; \
 	pip install -r requirements.txt;
 
-RUN addgroup -S api_group && adduser -S api_user -G api_group
+RUN addgroup -S api_group; \
+	adduser -S api_user -G api_group; \
+
+	chown -R api_user:api_group /usr/src/api; \
+	chmod -R 755 /usr/src/api;
+
 USER api_user
 
-ENTRYPOINT ["./entrypoint.sh"]
-CMD ["uwsgi", "--http-socket", ":8090", "--module", "app.wsgi"]
 
 EXPOSE 8090
+
+CMD ["uwsgi", "--ini", "./uwsgi.ini"]

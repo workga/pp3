@@ -13,7 +13,10 @@ services:
           - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
           - ./client/build/:/usr/src/client
           - ./api/static/admin:/usr/src/client/static/admin
+          - ./api/static/rest_framework:/usr/src/client/static/rest_framework
 
+        env_file:
+          - ./.env
         depends_on:
           - api
 
@@ -37,6 +40,8 @@ services:
         build: ./db
         image: db
 
+        # ports:
+        #   - "5432:5432"
         volumes:
           - postgres_data:/var/lib/postgresql/data/
         
@@ -44,5 +49,5 @@ services:
           - ./.env
 
 volumes:
-  postgres_data:
+    postgres_data:
 
