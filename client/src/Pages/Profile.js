@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
+
 function Profile() {
     return (
         <div>
-            <img src="..." alt="..." class="img-thumbnail"></img>
+            <img src='admin_image.png' alt="..." class="img-thumbnail"></img>
             <h1>Имя</h1>
 
             <div className="col">

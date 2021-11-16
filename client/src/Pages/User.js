@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function User() {
     return (
         <div>
-            <img src="..." alt="..." class="img-thumbnail"></img>
+            <img src='admin_image.png' alt="..." class="img-thumbnail"></img>
 
             <div class="row">
                 <h2 class="col-md-1">Имя</h2>

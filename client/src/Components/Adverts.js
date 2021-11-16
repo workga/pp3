@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Countries = ({ countries, loading }) => {
+const Adverts = ({ adverts, loading }) => {
 
     if (loading) {
         return <h2>Loading...</h2>
@@ -9,10 +9,10 @@ const Countries = ({ countries, loading }) => {
     return (
         <ul className="list-group mb-2">
             {
-                countries.map((country) => (
+                adverts.map((advert) => (
                     <li className="list-group-item">
-                        {country.name.common}
-                        <img src={country.flags.svg} alt="flag" className="ml-2" style = {{width: 20}} />
+                        <p>Title: {advert.title}</p>
+                        <p>Author: {advert.author}</p>
                     </li>
                 ))
             }
@@ -20,4 +20,4 @@ const Countries = ({ countries, loading }) => {
     )
 }
 
-export default Countries
+export default Adverts

@@ -9,7 +9,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
     
     return (
         <div>
-            <ul className="pagination">
+            <ul className="pagination ml-2">
                 {
                     pageNumbers.map( (number) => (
                              

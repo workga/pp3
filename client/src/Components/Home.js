@@ -1,6 +1,48 @@
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import Adverts from "./Adverts";
+import Pagination from "./Pagination"
 import { Link } from "react-router-dom"
 
 function Home() {
+
+    const [adverts, setAdverts] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [advertsPerPage] = useState(3)
+    const [homeURL] = useState("/")
+
+    useEffect(() => {
+            const getAdverts = async() => {
+                setLoading(true)
+                const res = await axios.get('/api/advert/?format=json')
+
+                setAdverts(
+                    res.data.map(advert => {
+                        return advert;
+                    })
+                )
+                setLoading(false)
+            }
+            getAdverts()
+    }, [homeURL])   
+
+    
+    console.log(adverts)
+
+
+    const lastAdvertIndex = currentPage * advertsPerPage
+    const firstAdvertIndex = lastAdvertIndex - advertsPerPage
+    const currentAdvert = adverts.slice(firstAdvertIndex, lastAdvertIndex)
+
+    const paginate = pageNumber => setCurrentPage(pageNumber)
+
+    const totalPages = Math.ceil(adverts.length / advertsPerPage)
+
+    const nextPage = () => setCurrentPage( cur => (cur + 1 <= totalPages) ? cur + 1 : cur )
+    const prevPage = () => setCurrentPage( cur => (cur - 1 >= 1) ? cur - 1 : cur )
+
+    
     return (
         <div className="container">
 
@@ -49,8 +91,32 @@ function Home() {
             
             
                
-           <div>
-                <Link to="/advert" className="mt-5 btn btn-secondary">Объявление</Link>
+           <div className="container mt-5">
+                <h1>Объявления</h1>
+                <Adverts adverts={currentAdvert} loading={loading} />
+
+                <div className="btn-toolbar" role="group" aria-label="Basic example">
+                    <ul className="btn-group pe-2">
+                        <button className="btn btn-outline-primary" onClick={() => setCurrentPage(1)}>{"<<"}</button>
+                        <button className="btn btn-outline-primary" onClick={prevPage}>{"<"}</button>
+                    </ul>
+                    
+
+                    <Pagination
+                        itemsPerPage={advertsPerPage}
+                        totalItems={adverts.length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                    />
+
+                    <ul className="btn-group ps-2">
+                        <button className="btn btn-outline-primary" onClick={nextPage}>{">"}</button>
+                        <button className="btn btn-outline-primary" onClick={() => setCurrentPage(totalPages)}>{">>"}</button>
+                    </ul> 
+                    
+                </div>
+                    
+
            </div>
 
         </div>
