@@ -11,10 +11,12 @@ services:
           - "8081:8080"
         volumes:
           - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-          - ./client/build/:/www/client
-          #- ./logs/:/var/log/nginx
+          - ./client/build/:/usr/src/client
+          - ./api/static/admin:/usr/src/client/static/admin
+          - ./api/static/rest_framework:/usr/src/client/static/rest_framework
 
-        command: nginx-debug -g "daemon off;"
+        env_file:
+          - ./.env
         depends_on:
           - api
 
@@ -23,11 +25,29 @@ services:
         build: ./api
         image: api
 
-        ports:
-          - "8091:8090"
+        # ports:
+        #   - "8091:8090"
         volumes:
-          - ./api/app/:/www/api/app
+          - ./api/:/usr/src/api
 
-        command: uwsgi --http-socket :8090 --module app.wsgi
+        env_file:
+          - ./.env
+        depends_on:
+          - db
 
+    db:
+        container_name: db
+        build: ./db
+        image: db
+
+        # ports:
+        #   - "5432:5432"
+        volumes:
+          - postgres_data:/var/lib/postgresql/data/
+        
+        env_file:
+          - ./.env
+
+volumes:
+    postgres_data:
 
