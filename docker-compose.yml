@@ -50,4 +50,5 @@ services:
 
 volumes:
     postgres_data:
+        name: "clare_postgres_data"
 
