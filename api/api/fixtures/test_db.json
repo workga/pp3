@@ -1,0 +1,109 @@
+[
+    {
+      "model": "api.advert",
+      "pk": 1,
+      "fields": {
+        "title": "Lesson A",
+        "author": 2,
+
+        "abstract": "Annet's lesson",
+        "description": "To become angry you should just...",
+
+        "date": "2021-11-21"
+      }
+    },
+
+    {
+      "model": "api.advert",
+      "pk": 2,
+      "fields": {
+        "title": "Lesson B",
+        "author": 3,
+
+        "abstract": "Bella's lesson",
+        "description": "To become brave you should just...",
+
+        "date": "2021-11-22"
+      }
+    },
+
+    {
+      "model": "api.advert",
+      "pk": 3,
+      "fields": {
+        "title": "Lesson C",
+        "author": 4,
+
+        "abstract": "Clare's lesson",
+        "description": "To become calm you should just...",
+
+        "date": "2021-11-23"
+      }
+    },
+
+    {
+        "model": "api.customuser",
+        "pk": 2,
+        "fields": {
+          "is_superuser": true,
+
+          "email": "annet@api.com",
+          "first_name": "Annet",
+          "last_name": "A.",
+          "abstract": "I'm Annet!",
+          "description": "I can teach you to be angry!",
+
+          "password": "pbkdf2_sha256$260000$NNp5XAlLbmhVfdcfgwC23P$r5eQIo32+hLUuk7SOuMeVps9hhqtpATMegvfdOhthow=",
+          "date_joined": "2021-11-27T17:03:04.972Z",
+          "last_login": "2021-11-27T17:03:37.568Z",
+          "is_active": true,
+          "is_staff": true,
+          "groups": [],
+          "user_permissions": []
+        }
+    },
+
+    {
+        "model": "api.customuser",
+        "pk": 3,
+        "fields": {
+          "is_superuser": true,
+
+          "email": "bella@api.com",
+          "first_name": "Bella",
+          "last_name": "B.",
+          "abstract": "I'm Bella!",
+          "description": "I can teach you to be brave!",
+
+          "password": "pbkdf2_sha256$260000$NNp5XAlLbmhVfdcfgwC23P$r5eQIo32+hLUuk7SOuMeVps9hhqtpATMegvfdOhthow=",
+          "date_joined": "2021-11-27T17:03:04.972Z",
+          "last_login": "2021-11-27T17:03:37.568Z",
+          "is_active": true,
+          "is_staff": true,
+          "groups": [],
+          "user_permissions": []
+        }
+    },
+
+    {
+        "model": "api.customuser",
+        "pk": 4,
+        "fields": {
+          "is_superuser": true,
+
+          "email": "clare@api.com",
+          "first_name": "Clare",
+          "last_name": "C.",
+          "abstract": "I'm Clare!",
+          "description": "I can teach you to be calm!",
+
+          "password": "pbkdf2_sha256$260000$NNp5XAlLbmhVfdcfgwC23P$r5eQIo32+hLUuk7SOuMeVps9hhqtpATMegvfdOhthow=",
+          "date_joined": "2021-11-27T17:03:04.972Z",
+          "last_login": "2021-11-27T17:03:37.568Z",
+          "is_active": true,
+          "is_staff": true,
+          "groups": [],
+          "user_permissions": []
+        }
+    }
+]
