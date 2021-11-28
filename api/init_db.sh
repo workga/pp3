@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# python manage.py migrate
 python manage.py makemigrations api
 python manage.py migrate
 
 python manage.py shell -c \
-      "from django.contrib.auth.models \
-      import User; \
-      User.objects.create_superuser('$ADMIN_NAME', '$ADMIN_EMAIL', '$ADMIN_PASSWORD')"
+      "from api.models import CustomUser; \
+      CustomUser.objects.create_superuser( \
+            '$ADMIN_EMAIL', '$ADMIN_FIRST_NAME', '$ADMIN_LAST_NAME', '$ADMIN_PASSWORD')"
+
+python manage.py loaddata test_db.json
