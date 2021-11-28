@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Adverts = ({ adverts, loading }) => {
 
@@ -7,16 +8,42 @@ const Adverts = ({ adverts, loading }) => {
     }
 
     return (
-        <ul className="list-group mb-2">
-            {
-                adverts.map((advert) => (
-                    <li className="list-group-item">
-                        <p>Title: {advert.title}</p>
-                        <p>Author: {advert.author}</p>
-                    </li>
-                ))
-            }
-        </ul>
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+        
+                {
+                    adverts.map((advert) => (
+                        <div className="col">
+                        
+                            <div className="card">
+                                <div className="card-header">
+                                    <h5 className="ps-4">Заголовок: {advert.title}</h5>
+                                    <li className="list-group-item">
+                                            <Link to="/user" className="link-secondary ps-2">Автор: {advert.author}</Link>
+                                    </li>
+
+                                 </div>   
+
+                                <div className="card-body">
+                                    <ul className="list-group list-group-flush">
+
+                                       
+                                        <li className="list-group-item ps-4">Краткое инфо автора</li>
+                                        <li className="list-group-item ps-4">Краткое инфо объявления</li>
+
+                                        <li className="list-group-item btn btn-light mt-2">
+                                            <Link to="/advert" className="btn btn-light">Подробнее</Link>
+                                        </li>
+
+                                     </ul>   
+                                    
+                                </div>
+                        
+                            </div>
+                        </div>    
+                    ))
+                }
+            
+        </div>
     )
 }
 

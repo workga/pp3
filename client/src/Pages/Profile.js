@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function Profile() {
     return (
-        <div>
-            <img src='admin_image.png' alt="..." class="img-thumbnail"></img>
+        <div className="container mt-5">
+            <img src='image.png' alt="..." class="img-thumbnail"></img>
             <h1>Имя</h1>
 
             <div className="col">
@@ -12,7 +12,7 @@ function Profile() {
                 <Link to="/" className="btn btn-primary">Написать</Link>
             </div>
 
-            <div>
+            <div className="mt-2">
                 <p>Краткая информация</p>
             </div>
             
