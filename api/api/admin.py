@@ -19,19 +19,23 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         ('Login', {'fields': (
             'email',
-            'password'
+            'password',
+            'last_login'
         )}),
         ('Information', {'fields': (
             'first_name',
             'last_name',
             'abstract',
-            'description'
+            'description',
+            'date_joined'
         )}),
         ('Permissions', {'fields': (
             'is_active',
             'is_staff'
         )}),
     )
+    readonly_fields = ['last_login', 'date_joined']
+
     add_fieldsets = (
         (
             None,
