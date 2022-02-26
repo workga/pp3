@@ -15,7 +15,19 @@ class AdvertsList(APIView):
     # permission_classes = (IsAuthenticated,)
     
     def get(self, request, *args, **kwargs):
-        qset = Advert.objects.values(
+        search_str = request.query_params.get("search")
+
+        if search_str:
+            advert_objects = Advert.search_manager.search(search_str)
+            additional_user_ids = CustomUser.search_manager.search(search_str).values_list("id", flat=True)
+
+            objects = advert_objects.union(
+                Advert.objects.filter(author__in=additional_user_ids)
+            )
+        else:
+            objects = Advert.objects
+
+        qset = objects.values(
             "id",
             "title",
             "author__id",
@@ -25,6 +37,7 @@ class AdvertsList(APIView):
             "abstract",
             "date"
         ).order_by("date")
+
 
         if qset.exists():
             return Response(list(qset))
