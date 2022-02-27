@@ -1,3 +1,5 @@
+import './Home.scss'
+
 import { useSelector } from "react-redux";
 import React, {useState, useEffect} from "react";
 import axios from "axios";
@@ -14,13 +16,13 @@ function Home() {
     const [adverts, setAdverts] = useState([])
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const [advertsPerPage] = useState(3)
+    const [advertsPerPage] = useState(8)
     const [homeURL] = useState("/")
 
     useEffect(() => {
             const getAdverts = async() => {
                 setLoading(true)
-                const res = await axios.get('/api/advert/?format=json')
+                const res = await axios.get('/api/adverts?format=json')
 
                 setAdverts(
                     res.data.map(advert => {
@@ -33,7 +35,7 @@ function Home() {
     }, [homeURL])   
 
     
-    console.log(adverts)
+    //console.log(adverts)
 
 
     const lastAdvertIndex = currentPage * advertsPerPage
@@ -49,30 +51,30 @@ function Home() {
 
     
     return (
-        <div className="container">
+        <div className="container home-page">
 
             
 
-            
+            <div>
                 <div className="row mt-5">
-                    <h1 className="col">Фильтры</h1>
+                    
                 </div>
 
 
-                <div className="col-md-5 col-md-offset-2 input-group">
-                        <SideNavbar className="col"/>
-                        <input type="search" className="form-control rounded"  placeholder="Search" aria-label="Search"
+                <div className="col-md-5 col-md-offset-2 input-group justify-content-center">
+                        <SideNavbar className="side-navbar"/>
+                        <input type="search" className="filter-search" placeholder="Search" id="search" aria-label="Search"
                             aria-describedby="search-addon" />
-                        <a href="/" type="button" class="btn btn-outline-primary pt-2"><BiSearchAlt2/></a>
+                        <a href="/" type="button" class="btn btn-outline-primary" style={{paddingTop:'10px'}}><BiSearchAlt2/></a>
                 </div>
-
+            </div>
                 
             
             
             
                
-           <div className="container mt-5">
-                <h1>Объявления</h1>
+           <div className="container contatiner-adverts mt-5">
+                <h1 className="mb-4 adverts-h1">Объявления</h1>
 
                 <Adverts adverts={currentAdvert} loading={loading} />
 

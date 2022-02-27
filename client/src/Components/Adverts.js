@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import './Adverts.scss'
+
 const Adverts = ({ adverts, loading }) => {
 
     if (loading) {
@@ -8,33 +10,33 @@ const Adverts = ({ adverts, loading }) => {
     }
 
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4">
+        <div className="row row-cols-3 row-cols-md-4 gx-lg-0 gy-lg-4">
         
                 {
                     adverts.map((advert) => (
                         <div className="col">
                         
-                            <div className="card">
-                                <div className="card-header">
-                                    <h5 className="ps-4">Заголовок: {advert.title}</h5>
-                                    <li className="list-group-item">
-                                            <Link to="/user" className="link-secondary ps-2">Автор: {advert.author}</Link>
-                                    </li>
+                            <div className="card" style={{width:290, height: 400}}>
+                                <div className="card-header" style={{backgroundColor: '#CCFFCC'}}>
+                                    <h5 className="ps-4 mb-1">Заголовок: {advert.title}</h5>
+                                    
+                                            <Link to="/user" className="link-secondary ps-4" style={{ textDecoration: 'none', color:'black' }}>Автор: {advert.author}</Link>
+                                    
 
                                  </div>   
 
                                 <div className="card-body">
-                                    <ul className="list-group list-group-flush">
+                                    <div className="list-group list-group-flush">
 
                                        
-                                        <li className="list-group-item ps-4">Краткое инфо автора</li>
-                                        <li className="list-group-item ps-4">Краткое инфо объявления</li>
+                                        <div className="list-group-item ps-4 mt-1">Краткое инфо автора</div>
+                                        <div className="list-group-item ps-4 mt-3">Краткое инфо объявления</div>
 
-                                        <li className="list-group-item btn btn-light mt-2">
-                                            <Link to="/advert" className="btn btn-light">Подробнее</Link>
-                                        </li>
+                                        <div className="ad-card-body list-group-item btn btn-light">
+                                            <Link to="/advert" className="verbose-button btn">Подробнее</Link>
+                                        </div>
 
-                                     </ul>   
+                                     </div>   
                                     
                                 </div>
                         

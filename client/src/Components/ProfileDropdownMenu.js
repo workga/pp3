@@ -34,14 +34,14 @@ const ProfileDropdownMenu = () => {
     
         return (
             <div class="menu-container">
-                <button class="menu-trigger" onClick={ handleClick } type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="menu-trigger" style={{marginTop:'10px'}} onClick={ handleClick } type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Профиль
                 </button>
                 <nav ref={dropdownRef} className={`menu ${ProfileDropdowmMenuIsOpened ? 'active' : 'inactive'}`}>
                     <ul className="" aria-labelledby="">
                         <li><Link to="/profile" className="dropdown-item" >Профиль</Link></li>
-                        <li><Link to="/" className="dropdown-item" >Чаты</Link></li>
-                        <li><Link to="/" className="dropdown-item" >Настройки</Link></li>
+                        <li><Link to="/chats" className="dropdown-item" >Чаты</Link></li>
+                        <li><Link to="/settings" className="dropdown-item" >Настройки</Link></li>
                         <li><button className="dropdown-item btn btn-danger me-3" onClick={handleSubmitLogOut}>Выйти</button></li>
                     </ul>
                 </nav>

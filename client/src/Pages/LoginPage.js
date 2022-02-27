@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+
 import { userLogIn, userLogOut } from "../redux/actions"
+
+import './LoginPage.scss'
 
 
 function LoginPage() {
@@ -34,30 +37,46 @@ function LoginPage() {
 
 
     return (
-        <div className="col-lg-8 offset-lg-2 mt-3">
-            <h2>Login</h2>
-            <form name="form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" value={userName} onChange={(e) => setUserName(e.target.value)} className={'form-control' + (submitted && !userName ? ' is-invalid' : '')} />
+        <div className="">
+            <div className="background">
+                
+                <form name="form" onSubmit={handleSubmit}>
+                    <h3>Вход</h3>
+
+            
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" placeholder="Email" id="username" value={userName} onChange={(e) => setUserName(e.target.value)} className={'form-control' + (submitted && !userName ? ' is-invalid' : '')} />
                     {submitted && !userName &&
-                        <div className="invalid-feedback">Username is required</div>
+                        <div className="invalid-feedback"></div>
                     }
-                </div>
-                <div className="form-group mt-2">
-                    <label>Password</label>
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className={'form-control' + (submitted && !password ? ' is-invalid' : '')} />
+                    
+                    
+                    <label for="password">Пароль</label>
+                    <input type="password" placeholder="Пароль" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={'form-control' + (submitted && !password ? ' is-invalid' : '')} />
                     {submitted && !password &&
-                        <div className="invalid-feedback">Password is required</div>
+                        <div className="invalid-feedback"></div>
                     }
-                </div>
-                <div className="form-group mt-3">
-                    <button className="btn btn-primary">
-                        Login
+                    
+
+                    <button className="login-button">
+                        Войти
                     </button>
-                    <Link to="/register" className="btn btn-link">Register</Link>
-                </div>
-            </form>
+                    
+                    <div>
+                        <h5 className="h5-reg">У вас нет аккаунта? Регистрируйтесь сейчас.</h5>
+                    </div>
+
+                    <button className="register-button" style={{ textDecoration: 'none' }} onClick={()=> navigate('/register') }>
+                        Регистрация
+                    </button>
+                    
+                    
+                </form>
+                
+                
+            </div>
+
+            
         </div>
     );
 }

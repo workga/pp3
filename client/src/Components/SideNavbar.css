@@ -4,8 +4,14 @@
     height: 50px;
     display: flex;
     justify-content: start;
-    align-items: center
+    align-items: center;
   }
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  outline: none;
+}
   
   .menu-bars {
     margin-left: 2rem;
@@ -14,27 +20,29 @@
   }
 
   .nav-menu {
-    background-color: rgb(183, 247, 181);
-    width: 250px;
+    background-color: ghostwhite;
+    width: 280px;
     height: 100vh;
     display: flex;
     justify-content: center;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 100px;
     left: -100%;
+    transform: translate(-10vw,-5px);
     transition: 850ms;
   }
   
   .nav-menu.active {
     left: 0;
     transition: 350ms;
+    z-index: 2;
   }
   
   .nav-text {
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 8px 0px 8px 16px;
+    padding: 10px;
     list-style: none;
     height: 60px;
   }
@@ -44,10 +52,10 @@
     color: black;
     font-size: 18px;
     width: 95%;
-    height: 100%;
+    height: 150%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 10px;
     border-radius: 4px;
   }
   
@@ -60,7 +68,7 @@
   }
   
   .navbar-toggle {
-    background-color: rgb(183, 247, 181);
+    background-color: ghostwhite;
     width: 100%;
     height: 80px;
     display: flex;
@@ -71,3 +79,26 @@
   span {
     margin-left: 16px;
   }
+
+  .filter{
+    display: inline-block;
+    transform: translate(-5px,0);
+  }
+
+  .apply-filters-button{
+    margin-top: 20px;
+    width: 100%;
+    background-color: #eaf0fb;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.apply-filters-button:hover{
+    background-color:#198754;
+}
+  
