@@ -23,18 +23,18 @@ function Header() {
     
 
     return (
-        <header className="mt-3">
+        <header className="mt-0" style={{height:'60px', backgroundColor: '#5CDB95'}}>
             
             <div className="btn-toolbar justify-content-between" role="toolbar">
                 
                 
-                    <Link to="/" className="btn btn-primary ms-3">На главную</Link>
+                    <Link to="/" className="btn mt-2 mx-2 px-n2 btn-primary" style={{height:'40px'}}>На главную</Link>
                 
                 
 
                 {!isLoggedIn && (
                    
-                        <Link to="/login" className="btn btn-success me-3">Войти</Link>  
+                        <Link to="/login" className="btn btn-success my-2" style={{marginRight:'10px'}}>Войти</Link>  
                     
                 )}
 
