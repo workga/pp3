@@ -1,20 +1,3 @@
-# from django.contrib.auth.models import AbstractUser
-# from django.db import models
-
-# class CustomUser(AbstractUser):
-#     abstract = models.TextField(
-#         default = "",
-#         help_text = "Write abstract here."
-#     )
-#     description = models.TextField(
-#         default = "",
-#         help_text = "Write description here."
-#     )
-
-#     def __str__(self):
-#         return self.username
-
-
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -22,6 +5,8 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.utils import timezone
+from djorm_pgfulltext.models import SearchManager
+from djorm_pgfulltext.fields import VectorField
 
 
 class UserManager(BaseUserManager):
@@ -93,8 +78,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         default = "",
         help_text = "Write description here."
     )
-    # photo = models.
 
+
+    search_index = VectorField()
+    search_manager = SearchManager(
+        fields=('first_name', 'last_name', 'abstract', 'description'),
+        config='pg_catalog.english',
+        search_field='search_index',
+        auto_update_search_field=True
+    )
 
     #------/      /------
 
@@ -131,6 +123,16 @@ class Advert(models.Model):
         help_text = "Write description here."
     )
     date = models.DateField(auto_now=True)
+
+    search_index = VectorField()
+    search_manager = SearchManager(
+        fields=('title', 'abstract', 'description'),
+        config='pg_catalog.english',
+        search_field='search_index',
+        auto_update_search_field=True
+    )
+
+    objects = models.Manager()
 
     def __str__(self):
         return  '{}'.format(self.title)
