@@ -79,6 +79,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text = "Write description here."
     )
 
+    objects = UserManager()
 
     search_index = VectorField()
     search_manager = SearchManager(
@@ -90,7 +91,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     #------/      /------
 
-    objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
