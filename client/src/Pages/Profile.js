@@ -69,26 +69,102 @@ function Profile() {
 
     return (
         <div className="container mt-5">
-            <img src='image.png' alt="..." class="img-thumbnail"></img>
-            <h1>{firstName} {lastName}</h1>
-
-            <div className="col">
-                <h2>Преподаватель, ученик</h2>
-                <Link to="/" className="btn btn-primary">Написать</Link>
-            </div>
-
-            <div className="mt-2">
-                <p>{abstract}</p>
-            </div>
             
-            <div>
-                <p>{description}</p>
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src='image.png' alt="..." class="img-thumbnail" width = "150"></img>
+                                
+                                <div class="mt-3">
+                                    <h4>{firstName} {lastName}</h4>
+                                    <p class="text-secondary mb-1">Преподаватель, ученик</p>
+                                    
+                                    
+                                    <Link to="/" className="btn btn-primary mt-2">Написать</Link>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <div class="col-md-8">
+              <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                            <h6 class="mb-0">Полное имя</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {firstName} {lastName}
+                            </div>
+                        </div>
+                        <hr/>
+
+                            
+                           
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                            <h6 class="mb-0">Краткая информация</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {abstract}
+                            </div>
+                        </div>
+                        <hr/>
+
+                        
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <h6 class="mb-0">Описание</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {description}
+                                </div>
+                            </div>
+                            <hr/>
+
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <h6 class="mb-0">Объявления</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    
+                                </div>
+                            </div>
+                            
+
+                        
+
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                            <Link to="/" className="btn btn-primary mt-4">Создать объявление</Link>
+                            </div>
+                        </div>
+                        
+
+                        </div>
+              </div>
+
+
+
+
             </div>
+        </div>
+
             
-            <div>
-                <p>Объявления</p>
-                <Link to="/" className="btn btn-primary">Создать объявление</Link>
-            </div>
+           
+
+            
+
+           
 
         </div>
     )
