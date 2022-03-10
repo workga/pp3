@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogIn, userLogOut } from "../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../services/auth-service";
 
 import './ProfileDropdownMenu.css'
 
@@ -27,6 +28,7 @@ const ProfileDropdownMenu = () => {
 
     function handleSubmitLogOut(e) {
         e.preventDefault();
+        AuthService.logout();
         dispatch(userLogOut());
         navigate('/');
     }

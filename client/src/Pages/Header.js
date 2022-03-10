@@ -7,8 +7,8 @@ import ProfileDropdownMenu from "../Components/ProfileDropdownMenu";
 
 function Header() {
 
-    
-    const isLoggedIn = useSelector(state => state.userReducer.isLoggedIn);
+    const user = JSON.parse(localStorage.getItem('user'));
+    const isLoggedIn = (user && user.access)
 
     const [ProfileDropdowmMenuIsOpened, setProfileDropdowmMenuIsOpened] = useState(false);
 

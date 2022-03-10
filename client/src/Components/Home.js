@@ -34,8 +34,8 @@ function Home() {
             getAdverts()
     }, [homeURL])   
 
-    
-    //console.log(adverts)
+    const state = useSelector(state => state);
+    console.log(state)
 
 
     const lastAdvertIndex = currentPage * advertsPerPage

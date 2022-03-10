@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import authService from '../services/auth-service';
+
 import './RegisterPage.scss'
 
 function RegisterPage() {
@@ -12,7 +14,7 @@ function RegisterPage() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -24,6 +26,20 @@ function RegisterPage() {
         setSubmitted(true);
 
         if (userName && password && firstName && lastName) {
+
+            authService.register(userName, password, firstName, lastName)
+            .then(
+                status => {
+                    if (status === 200) {
+                        console.log("ok");
+                    }
+                    else {
+                        console.log("not ok")
+                        setError(true);
+                    }
+                }
+            )
+
             //dispatch(userLogIn(userName, password, navigate));
             
             //navigate('/profile')
@@ -43,6 +59,13 @@ function RegisterPage() {
             <form className="register-form" name="form" onSubmit={handleSubmit}>
                 <h3>Регистрация</h3>
 
+                {
+                    submitted && error && <h5 style={{color:"red"}}>Ошибка регистрации</h5>
+                }
+                {
+                    submitted && !error && <h5 style={{color:"green"}}>Успешно</h5>
+                }
+
                 <label for="first-name">Имя</label>
                 <input type="text" placeholder="Имя" id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={'form-control' + (submitted && !firstName ? ' is-invalid' : '')} />
                 {submitted && !firstName &&
@@ -55,7 +78,7 @@ function RegisterPage() {
                     <div className="invalid-feedback"></div>
                 }
         
-                <label for="username">Имя пользователя</label>
+                <label for="username">E-mail</label>
                 <input type="text" placeholder="Email" id="username" value={userName} onChange={(e) => setUserName(e.target.value)} className={'form-control' + (submitted && !userName ? ' is-invalid' : '')} />
                 {submitted && !userName &&
                     <div className="invalid-feedback"></div>
